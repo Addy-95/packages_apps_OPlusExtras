@@ -54,9 +54,11 @@ public class OPlusExtras extends PreferenceFragment
     // CPU
     private static final String KEY_POWER_EFFICIENT_WORKQUEUE = "power_efficient_workqueue";
     private SwitchPreference mPowerEfficientWorkqueueModeSwitch;
+    private String nodePowerEfficientWorkqueue;
 
     private static final String KEY_TOUCHBOOST = "touchboost";
     private SwitchPreference mTouchboostModeSwitch;
+    private String nodeTouchboost;
 
     // Display
     private static final String KEY_AMBIENT_DISPLAY_GESTURES = "ambient_display_gestures_settings";
@@ -64,19 +66,23 @@ public class OPlusExtras extends PreferenceFragment
     private static final String KEY_ANTIFLICKER = "antiflicker";
     private static final String KEY_ANTIFLICKER_INFO = "antiflicker_info";
     private SwitchPreference mAntiFlickerModeSwitch;
+    private String nodeAntiFlicker;
 
     private static final String KEY_HBM = "hbm";
     private static final String KEY_HBM_INFO = "hbm_info";
     private SwitchPreference mHBMModeSwitch;
+    private String nodeHBM;
 
     private static final String KEY_KCAL = "kcal";
 
     private static final String KEY_KEEP_PCC = "keep_pcc";
     private SwitchPreference mKeepPCCModeSwitch;
+    private String nodeKeepPCC;
 
     private static final String KEY_MAX_BRIGHTNESS = "max_brightness";
     private static final String MAX_BRIGHTNESS_DEFAULT = "2047";
     private CustomSeekBarPreference mMaxBrightnessPreference;
+    private String nodeMaxBrightness;
 
     private static final String KEY_PER_APP_COLORSPACE = "per_app_colorspace";
 
@@ -86,35 +92,43 @@ public class OPlusExtras extends PreferenceFragment
     private static final String KEY_FSYNC = "fsync";
     private static final String KEY_FSYNC_INFO = "fsync_info";
     private SwitchPreference mFSyncSwitch;
+    private String nodeFSync;
 
     // GPU
     private static final String KEY_ADRENOBOOST = "adrenoboost";
     private static final String ADRENOBOOST_DEFAULT = "0";
     private CustomSeekBarPreference mAdrenoboostPreference;
+    private String nodeAdrenoboost;
 
     // Power
     private static final String KEY_POWERSHARE = "powershare";
     private SwitchPreference mPowershareModeSwitch;
+    private String nodePowershare;
 
     private static final String KEY_QUIET_MODE = "quiet_mode";
     private SwitchPreference mQuietModeSwitch;
+    private String nodeQuietMode;
 
     // Sound control
     private static final String KEY_MIC_GAIN = "mic_gain";
     private static final String MIC_GAIN_DEFAULT = "0";
     private CustomSeekBarPreference mMicGainPreference;
+    private String nodeMicGain;
 
     private static final String KEY_SPEAKER_GAIN = "speaker_gain";
     private static final String SPEAKER_GAIN_DEFAULT = "0";
     private CustomSeekBarPreference mSpeakerGainPreference;
+    private String nodeSpeakerGain;
 
     // Touchscreen
     private static final String KEY_EDGE_LIMIT = "edge_limit";
     private SwitchPreference mEdgeLimitSwitch;
+    private String edgeLimit;
 
     private static final String KEY_HIGH_TOUCH_POLLING_RATE = "high_touch_polling_rate";
     private static final String KEY_HIGH_TOUCH_POLLING_RATE_INFO = "high_touch_polling_rate_info";
     private SwitchPreference mHighTouchPollingRateSwitch;
+    private String nodeHighTouchPollingRate;
 
     private static final String KEY_TOUCH_GESTURES = "touchscreen_gestures";
 
@@ -122,15 +136,18 @@ public class OPlusExtras extends PreferenceFragment
     private static final String KEY_USB2_FAST_CHARGE = "usb2_fast_charge";
     private static final String KEY_USB2_FAST_CHARGE_INFO = "usb2_fast_charge_info";
     private SwitchPreference mUSB2FastChargeSwitch;
+    private String nodeUSB2FastCharge;
 
     private static final String KEY_USB_OTG = "usb_otg";
     private SwitchPreference mUSBOTGSwitch;
+    private String nodeOTG;
 
     // Vibrator
     private static final String KEY_VIBRATOR_STRENGTH = "vibrator_strength";
     private static final String VIBRATOR_STRENGTH_DEFAULT = "3";
     private static final long testVibrationPattern[] = {0,5};
     private CustomSeekBarPreference mVibratorStrengthPreference;
+    private String nodeVibratorStrength;
     private Vibrator mVibrator;
 
     @Override
@@ -159,6 +176,25 @@ public class OPlusExtras extends PreferenceFragment
              (PreferenceCategory) findPreference("category_vibrator")
          };
 
+        // OPlusExtras nodes
+        nodePowerEfficientWorkqueue = getResources().getString(R.string.node_power_efficient_workqueue_switch);
+        nodeTouchboost = getResources().getString(R.string.node_touchboost_switch);
+        nodeAntiFlicker = getResources().getString(R.string.node_antiflicker_switch);
+        nodeHBM = getResources().getString(R.string.node_hbm_switch);
+        nodeKeepPCC = getResources().getString(R.string.node_keep_pcc_switch);
+        nodeMaxBrightness = getResources().getString(R.string.node_max_brightness_preference);
+        nodeFSync = getResources().getString(R.string.node_fsync_switch);
+        nodeAdrenoboost = getResources().getString(R.string.node_adrenoboost_preference);
+        nodeMicGain = getResources().getString(R.string.node_microphone_gain_preference);
+        nodeSpeakerGain = getResources().getString(R.string.node_speaker_gain_preference);
+        nodePowershare = getResources().getString(R.string.node_powershare_switch);
+        nodeQuietMode = getResources().getString(R.string.node_quiet_mode_switch);
+        edgeLimit = getResources().getString(R.string.node_edge_limit_switch);
+        nodeHighTouchPollingRate = getResources().getString(R.string.node_high_touch_polling_rate_switch);
+        nodeUSB2FastCharge = getResources().getString(R.string.node_usb2_fast_charge_switch);
+        nodeOTG = getResources().getString(R.string.node_usb_otg_switch);
+        nodeVibratorStrength = getResources().getString(R.string.node_vibrator_strength_preference);
+
          // Alert slider
          initNotificationSliderPreference();
 
@@ -168,7 +204,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // Power efficient workqueue switch
         mPowerEfficientWorkqueueModeSwitch = (SwitchPreference) findPreference(KEY_POWER_EFFICIENT_WORKQUEUE);
-        String nodePowerEfficientWorkqueue = getResources().getString(R.string.node_power_efficient_workqueue_switch);
         if (Utils.fileWritable(nodePowerEfficientWorkqueue)) {
             mPowerEfficientWorkqueueModeSwitch.setEnabled(true);
             mPowerEfficientWorkqueueModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_POWER_EFFICIENT_WORKQUEUE, false));
@@ -183,7 +218,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // MSM touchboost switch
         mTouchboostModeSwitch = (SwitchPreference) findPreference(KEY_TOUCHBOOST);
-        String nodeTouchboost = getResources().getString(R.string.node_touchboost_switch);
         if (Utils.fileWritable(nodeTouchboost)) {
             mTouchboostModeSwitch.setEnabled(true);
             mTouchboostModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_TOUCHBOOST, false));
@@ -203,7 +237,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // Anti-flicker switch
         mAntiFlickerModeSwitch = (SwitchPreference) findPreference(KEY_ANTIFLICKER);
-        String nodeAntiFlicker = getResources().getString(R.string.node_antiflicker_switch);
         if (Utils.fileWritable(nodeAntiFlicker)) {
             mAntiFlickerModeSwitch.setEnabled(true);
             mAntiFlickerModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_ANTIFLICKER, false));
@@ -219,7 +252,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // High brightness mode switch
         mHBMModeSwitch = (SwitchPreference) findPreference(KEY_HBM);
-        String nodeHBM = getResources().getString(R.string.node_hbm_switch);
         if (Utils.fileWritable(nodeHBM)) {
             mHBMModeSwitch.setEnabled(true);
             mHBMModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_HBM, false));
@@ -240,7 +272,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // Keep PCC enabled switch
         mKeepPCCModeSwitch = (SwitchPreference) findPreference(KEY_KEEP_PCC);
-        String nodeKeepPCC = getResources().getString(R.string.node_keep_pcc_switch);
         if (Utils.fileWritable(nodeKeepPCC)) {
             mKeepPCCModeSwitch.setEnabled(true);
             mKeepPCCModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_KEEP_PCC, false));
@@ -255,7 +286,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // Maximum brightness preference
         mMaxBrightnessPreference =  (CustomSeekBarPreference) findPreference(KEY_MAX_BRIGHTNESS);
-        String nodeMaxBrightness = getResources().getString(R.string.node_max_brightness_preference);
         if (Utils.fileWritable(nodeMaxBrightness)) {
             mMaxBrightnessPreference.setValue(sharedPrefs.getInt(KEY_MAX_BRIGHTNESS,
                 Integer.parseInt(Utils.getFileValue(nodeMaxBrightness, MAX_BRIGHTNESS_DEFAULT))));
@@ -280,7 +310,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // Fsync switch
         mFSyncSwitch = (SwitchPreference) findPreference(KEY_FSYNC);
-        String nodeFSync = getResources().getString(R.string.node_fsync_switch);
         if (Utils.fileWritable(nodeFSync)) {
             mFSyncSwitch.setEnabled(true);
             mFSyncSwitch.setChecked(sharedPrefs.getBoolean(KEY_FSYNC, true));
@@ -296,7 +325,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // Adrenoboost preference
         mAdrenoboostPreference =  (CustomSeekBarPreference) findPreference(KEY_ADRENOBOOST);
-        String nodeAdrenoboost = getResources().getString(R.string.node_adrenoboost_preference);
         if (Utils.fileWritable(nodeAdrenoboost)) {
             mAdrenoboostPreference.setValue(sharedPrefs.getInt(KEY_ADRENOBOOST,
                 Integer.parseInt(Utils.getFileValue(nodeAdrenoboost, ADRENOBOOST_DEFAULT))));
@@ -311,7 +339,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // Mic gain preference
         mMicGainPreference =  (CustomSeekBarPreference) findPreference(KEY_MIC_GAIN);
-        String nodeMicGain = getResources().getString(R.string.node_microphone_gain_preference);
         if (Utils.fileWritable(nodeMicGain)) {
             mMicGainPreference.setValue(sharedPrefs.getInt(KEY_MIC_GAIN,
                 Integer.parseInt(Utils.getFileValue(nodeMicGain, MIC_GAIN_DEFAULT))));
@@ -326,7 +353,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // Speaker gain preference
         mSpeakerGainPreference =  (CustomSeekBarPreference) findPreference(KEY_SPEAKER_GAIN);
-        String nodeSpeakerGain = getResources().getString(R.string.node_speaker_gain_preference);
         if (Utils.fileWritable(nodeSpeakerGain)) {
             mSpeakerGainPreference.setValue(sharedPrefs.getInt(KEY_SPEAKER_GAIN,
                 Integer.parseInt(Utils.getFileValue(nodeSpeakerGain, SPEAKER_GAIN_DEFAULT))));
@@ -341,7 +367,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // Powershare switch
         mPowershareModeSwitch = (SwitchPreference) findPreference(KEY_POWERSHARE);
-        String nodePowershare = getResources().getString(R.string.node_powershare_switch);
         if (Utils.fileWritable(nodePowershare)) {
             mPowershareModeSwitch.setEnabled(true);
             mPowershareModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_POWERSHARE, false));
@@ -356,7 +381,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // OEM wireless charger quiet mode switch
         mQuietModeSwitch = (SwitchPreference) findPreference(KEY_QUIET_MODE);
-        String nodeQuietMode = getResources().getString(R.string.node_quiet_mode_switch);
         if (Utils.fileWritable(nodeQuietMode)) {
             mQuietModeSwitch.setEnabled(true);
             mQuietModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_QUIET_MODE, false));
@@ -371,7 +395,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // Edge limit switch
         mEdgeLimitSwitch = (SwitchPreference) findPreference(KEY_EDGE_LIMIT);
-        String EdgeLimit = getResources().getString(R.string.node_edge_limit_switch);
         if (Utils.fileWritable(nodeEdgeLimit)) {
             mEdgeLimitSwitch.setEnabled(true);
             mEdgeLimitSwitch.setChecked(sharedPrefs.getBoolean(KEY_EDGE_LIMIT, false));
@@ -386,7 +409,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // High touch polling rate switch
         mHighTouchPollingRateSwitch = (SwitchPreference) findPreference(KEY_HIGH_TOUCH_POLLING_RATE);
-        String nodeHighTouchPollingRate = getResources().getString(R.string.node_high_touch_polling_rate_switch);
         if (Utils.fileWritable(nodeHighTouchPollingRate)) {
             mHighTouchPollingRateSwitch.setEnabled(true);
             mHighTouchPollingRateSwitch.setChecked(sharedPrefs.getBoolean(KEY_HIGH_TOUCH_POLLING_RATE, false));
@@ -407,7 +429,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // USB 2.0 fast charge switch
         mUSB2FastChargeSwitch = (SwitchPreference) findPreference(KEY_USB2_FAST_CHARGE);
-        String nodeUSB2FastCharge = getResources().getString(R.string.node_usb2_fast_charge_switch);
         if (Utils.fileWritable(nodeUSB2FastCharge)) {
             mUSB2FastChargeSwitch.setEnabled(true);
             mUSB2FastChargeSwitch.setChecked(sharedPrefs.getBoolean(KEY_USB2_FAST_CHARGE, false));
@@ -423,7 +444,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // USB-OTG switch
         mUSBOTGSwitch = (SwitchPreference) findPreference(KEY_USB_OTG);
-        String nodeOTG = getResources().getString(R.string.node_usb_otg_switch);
         if (Utils.fileWritable(nodeOTG)) {
             mUSBOTGSwitch.setEnabled(true);
             mUSBOTGSwitch.setChecked(sharedPrefs.getBoolean(KEY_USB_OTG, false));
@@ -438,7 +458,6 @@ public class OPlusExtras extends PreferenceFragment
 
         // Vibrator strength preference
         mVibratorStrengthPreference =  (CustomSeekBarPreference) findPreference(KEY_VIBRATOR_STRENGTH);
-        String nodeVibratorStrength = getResources().getString(R.string.node_vibrator_strength_preference);
         if (Utils.fileWritable(nodeVibratorStrength)) {
             mVibratorStrengthPreference.setValue(sharedPrefs.getInt(KEY_VIBRATOR_STRENGTH,
                 Integer.parseInt(Utils.getFileValue(nodeVibratorStrength, VIBRATOR_STRENGTH_DEFAULT))));
@@ -492,7 +511,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_POWER_EFFICIENT_WORKQUEUE, enabled).commit();
-            String nodePowerEfficientWorkqueue = getContext().getResources().getString(R.string.node_power_efficient_workqueue_switch);
             Utils.writeValue(nodePowerEfficientWorkqueue, enabled ? "1" : "0");
             return true;
         // MSM touchboost switch
@@ -500,7 +518,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_TOUCHBOOST, enabled).commit();
-            String nodeTouchboost = getContext().getResources().getString(R.string.node_touchboost_switch);
             Utils.writeValue(nodeTouchboost, enabled ? "1" : "0");
             return true;
         // Anti-flicker switch
@@ -508,7 +525,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_ANTIFLICKER, enabled).commit();
-            String nodeAntiFlicker = getContext().getResources().getString(R.string.node_antiflicker_switch);
             Utils.writeValue(nodeAntiFlicker, enabled ? "1" : "0");
             return true;
         // High brightness mode switch
@@ -516,7 +532,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_HBM, enabled).commit();
-            String nodeHBM = getContext().getResources().getString(R.string.node_hbm_switch);
             Utils.writeValue(nodeHBM, enabled ? "1" : "0");
             return true;
         // Maximum brightness preference
@@ -524,7 +539,6 @@ public class OPlusExtras extends PreferenceFragment
             int value = Integer.parseInt(newValue.toString());
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putInt(KEY_MAX_BRIGHTNESS, value).commit();
-            String nodeMaxBrightness = getContext().getResources().getString(R.string.node_max_brightness_preference);
             Utils.writeValue(nodeMaxBrightness, String.valueOf(value));
             return true;
         // Keep PCC enabled switch
@@ -532,7 +546,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_KEEP_PCC, enabled).commit();
-            String nodeKeepPCC = getContext().getResources().getString(R.string.node_keep_pcc_switch);
             Utils.writeValue(nodeKeepPCC, enabled ? "1" : "0");
             return true;
         // Fsync switch
@@ -540,7 +553,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_FSYNC, enabled).commit();
-            String nodeFSync = getContext().getResources().getString(R.string.node_fsync_switch);
     	    Utils.writeValue(nodeFSync, enabled ? "1" : "0");
             return true;
         // Adrenoboost preference
@@ -548,7 +560,6 @@ public class OPlusExtras extends PreferenceFragment
             int value = Integer.parseInt(newValue.toString());
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putInt(KEY_ADRENOBOOST, value).commit();
-            String nodeAdrenoboost = getContext().getResources().getString(R.string.node_adrenoboost_preference);
             Utils.writeValue(nodeAdrenoboost, String.valueOf(value));
             return true;
         // Powershare switch
@@ -556,7 +567,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_POWERSHARE, enabled).commit();
-            String nodePowershare = getContext().getResources().getString(R.string.node_powershare_switch);
             Utils.writeValue(nodePowershare, enabled ? "1" : "0");
             return true;
         // OEM wireless charger quiet mode switch
@@ -564,7 +574,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_QUIET_MODE, enabled).commit();
-            String nodeQuietMode = getContext().getResources().getString(R.string.node_quiet_mode_switch);
             Utils.writeValue(nodeQuietMode, enabled ? "1" : "0");
             return true;
         // Mic gain preference
@@ -572,7 +581,6 @@ public class OPlusExtras extends PreferenceFragment
             int value = Integer.parseInt(newValue.toString());
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putInt(KEY_MIC_GAIN, value).commit();
-            String nodeMicGain = getContext().getResources().getString(R.string.node_microphone_gain_preference);
             Utils.writeValue(nodeMicGain, String.valueOf(value));
             return true;
         // Speaker gain preference
@@ -580,7 +588,6 @@ public class OPlusExtras extends PreferenceFragment
             int value = Integer.parseInt(newValue.toString());
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putInt(KEY_SPEAKER_GAIN, value).commit();
-            String nodeSpeakerGain = getContext().getResources().getString(R.string.node_speaker_gain_preference);
             Utils.writeValue(nodeSpeakerGain, String.valueOf(value));
             return true;
         // Edge limit switch
@@ -588,7 +595,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_EDGE_LIMIT, enabled).commit();
-            String nodeEdgeLimit = getContext().getResources().getString(R.string.node_edge_limit_switch);
             Utils.writeValue(nodeEdgeLimit, enabled ? "1" : "0");
             return true;
         // High touch polling rate switch
@@ -596,7 +602,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_HIGH_TOUCH_POLLING_RATE, enabled).commit();
-            String nodeHightTouchPollingRate = getContext().getResources().getString(R.string.node_high_touch_polling_rate_switch);
             Utils.writeValue(nodeHightTouchPollingRate, enabled ? "1" : "0");
             return true;
         // USB 2.0 fast charge switch
@@ -604,7 +609,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_USB2_FAST_CHARGE, enabled).commit();
-            String nodeUSB2FastCharge = getContext().getResources().getString(R.string.node_usb2_fast_charge_switch);
             Utils.writeValue(nodeUSB2FastCharge, enabled ? "1" : "0");
             return true;
         // USB-OTG switch
@@ -612,7 +616,6 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_USB_OTG, enabled).commit();
-            String nodeOTG = getContext().getResources().getString(R.string.node_usb_otg_switch);
     	    Utils.writeValue(nodeOTG, enabled ? "1" : "0");
             return true;
         // Vibrator strength preference
@@ -620,7 +623,6 @@ public class OPlusExtras extends PreferenceFragment
             int value = Integer.parseInt(newValue.toString());
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putInt(KEY_VIBRATOR_STRENGTH, value).commit();
-            String nodeVibratorStrength = getContext().getResources().getString(R.string.node_vibrator_strength_preference);
             Utils.writeValue(nodeVibratorStrength, String.valueOf(value));
             mVibrator.vibrate(testVibrationPattern, -1);
             return true;
@@ -916,7 +918,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // Power efficient workqueue switch
     public static void restorePowerEfficientWorkqueueSetting(Context context) {
-        String nodePowerEfficientWorkqueue = context.getResources().getString(R.string.node_power_efficient_workqueue_switch);
         if (Utils.fileWritable(nodePowerEfficientWorkqueue)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_POWER_EFFICIENT_WORKQUEUE, false);
@@ -926,7 +927,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // MSM touchboost switch
     public static void restoreTouchboostSetting(Context context) {
-        String nodeTouchboost = context.getResources().getString(R.string.node_touchboost_switch);
         if (Utils.fileWritable(nodeTouchboost)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_TOUCHBOOST, false);
@@ -936,7 +936,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // Anti-flicker switch
     public static void restoreAntiFlickerSetting(Context context) {
-        String nodeAntiFlicker = context.getResources().getString(R.string.node_antiflicker_switch);
         if (Utils.fileWritable(nodeAntiFlicker)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_ANTIFLICKER, false);
@@ -946,7 +945,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // High brightness mode switch
     public static void restoreHBMSetting(Context context) {
-        String nodeHBM = context.getResources().getString(R.string.node_hbm_switch);
         if (Utils.fileWritable(nodeHBM)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_HBM, false);
@@ -956,7 +954,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // Keep PCC enabled switch
     public static void restoreKeepPCCSetting(Context context) {
-        String nodeKeepPCC = context.getResources().getString(R.string.node_keep_pcc_switch);
         if (Utils.fileWritable(nodeKeepPCC)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_KEEP_PCC, false);
@@ -966,7 +963,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // Maximum brightness preference
     public static void restoreMaxBrightnessSetting(Context context) {
-        String nodeMaxBrightness = context.getResources().getString(R.string.node_max_brightness_preference);
         if (Utils.fileWritable(nodeMaxBrightness)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             int value = sharedPrefs.getInt(KEY_MAX_BRIGHTNESS,
@@ -977,7 +973,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // Fsync switch
     public static void restoreFSyncSetting(Context context) {
-        String nodeFSync = context.getResources().getString(R.string.node_fsync_switch);
         if (Utils.fileWritable(nodeFSync)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_FSYNC, true);
@@ -987,7 +982,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // Adrenoboost preference
     public static void restoreAdrenoboostSetting(Context context) {
-        String nodeAdrenoboost = context.getResources().getString(R.string.node_adrenoboost_preference);
         if (Utils.fileWritable(nodeAdrenoboost)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             int value = sharedPrefs.getInt(KEY_ADRENOBOOST,
@@ -998,7 +992,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // Powershare switch
     public static void restorePowershareSetting(Context context) {
-        String nodePowershare = context.getResources().getString(R.string.node_powershare_switch);
         if (Utils.fileWritable(nodePowershare)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_POWERSHARE, false);
@@ -1008,7 +1001,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // OEM wireless charger quiet mode switch
     public static void restoreQuietModeSetting(Context context) {
-        String nodeQuietMode = context.getResources().getString(R.string.node_quiet_mode_switch);
         if (Utils.fileWritable(nodeQuietMode)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_QUIET_MODE, false);
@@ -1018,7 +1010,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // Mic gain preference
     public static void restoreMicGainSetting(Context context) {
-        String nodeMicGain = context.getResources().getString(R.string.node_microphone_gain_preference);
         if (Utils.fileWritable(nodeMicGain)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             int value = sharedPrefs.getInt(KEY_MIC_GAIN,
@@ -1029,7 +1020,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // Speaker gain preference
     public static void restoreSpeakerGainSetting(Context context) {
-        String nodeSpeakerGain = context.getResources().getString(R.string.node_speaker_gain_preference);
         if (Utils.fileWritable(nodeSpeakerGain)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             int value = sharedPrefs.getInt(KEY_SPEAKER_GAIN,
@@ -1040,7 +1030,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // Edge limit switch
     public static void restoreEdgeLimitSetting(Context context) {
-        String nodeEdgeLimit = context.getResources().getString(R.string.node_edge_limit_switch);
         if (Utils.fileWritable(nodeEdgeLimit)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_EDGE_LIMIT, false);
@@ -1050,7 +1039,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // High touch polling rate switch
     public static void restoreHighTouchPollingRateSetting(Context context) {
-        String nodeHighTouchPollingRate = context.getResources().getString(R.string.node_high_touch_polling_rate_switch);
         if (Utils.fileWritable(nodeHighTouchPollingRate)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_HIGH_TOUCH_POLLING_RATE, false);
@@ -1060,7 +1048,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // USB 2.0 fast charge switch
     public static void restoreFastChargeSetting(Context context) {
-        String nodeUSB2FastCharge = context.getResources().getString(R.string.node_usb2_fast_charge_switch);
         if (Utils.fileWritable(nodeUSB2FastCharge)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_USB2_FAST_CHARGE, false);
@@ -1070,7 +1057,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // USB-OTG switch
     public static void restoreOTGSetting(Context context) {
-        String nodeOTG = context.getResources().getString(R.string.node_usb_otg_switch);
         if (Utils.fileWritable(nodeOTG)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_USB_OTG, false);
@@ -1080,7 +1066,6 @@ public class OPlusExtras extends PreferenceFragment
 
     // Vibrator strength preference
     public static void restoreVibratorStrengthSetting(Context context) {
-        String nodeVibratorStrength = context.getResources().getString(R.string.node_vibrator_strength_preference);
         if (Utils.fileWritable(nodeVibratorStrength)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             int value = sharedPrefs.getInt(KEY_VIBRATOR_STRENGTH,
@@ -1111,15 +1096,5 @@ public class OPlusExtras extends PreferenceFragment
     private void showWarning() {
         WarningDialogFragment fragment = new WarningDialogFragment();
         fragment.show(getFragmentManager(), "warning_dialog");
-    }
-
-    public static boolean isFeatureSupported(Context ctx, int feature) {
-        try {
-            return ctx.getResources().getBoolean(feature);
-        }
-        // TODO: Replace with proper exception type class
-        catch (Exception e) {
-            return false;
-        }
     }
 }
