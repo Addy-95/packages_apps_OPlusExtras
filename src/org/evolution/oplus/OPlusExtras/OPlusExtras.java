@@ -280,7 +280,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeFSync = getResources().getString(R.string.node_fsync_switch);
         if (Utils.fileWritable(nodeFSync)) {
             mFSyncSwitch.setEnabled(true);
-            mFSyncSwitch.setChecked(sharedPrefs.getBoolean(KEY_FSYNC, false));
+            mFSyncSwitch.setChecked(sharedPrefs.getBoolean(KEY_FSYNC, true));
             mFSyncSwitch.setOnPreferenceChangeListener(this);
         } else {
             mFSyncSwitch.setEnabled(false);
@@ -954,7 +954,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeFSync = context.getResources().getString(R.string.node_fsync_switch);
         if (Utils.fileWritable(nodeFSync)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_FSYNC, false);
+            boolean value = sharedPrefs.getBoolean(KEY_FSYNC, true);
             Utils.writeValue(nodeFSync, value ? "1" : "0");
         }
     }
