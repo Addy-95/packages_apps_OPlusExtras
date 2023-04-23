@@ -165,7 +165,7 @@ public class OPlusExtras extends PreferenceFragment
 
         // Power efficient workqueue switch
         mPowerEfficientWorkqueueModeSwitch = (SwitchPreference) findPreference(KEY_POWER_EFFICIENT_WORKQUEUE);
-        String nodePowerEfficientWorkqueue = getResources().getString(R.string.node_touchboost_switch);
+        String nodePowerEfficientWorkqueue = getResources().getString(R.string.node_power_efficient_workqueue_switch);
         if (Utils.fileWritable(nodePowerEfficientWorkqueue)) {
             mPowerEfficientWorkqueueModeSwitch.setEnabled(true);
             mPowerEfficientWorkqueueModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_POWER_EFFICIENT_WORKQUEUE,
@@ -485,7 +485,7 @@ public class OPlusExtras extends PreferenceFragment
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_POWER_EFFICIENT_WORKQUEUE, enabled).commit();
-            String nodePowerEfficientWorkqueue = getContext().getResources().getString(R.string.node_touchboost_switch);
+            String nodePowerEfficientWorkqueue = getContext().getResources().getString(R.string.node_power_efficient_workqueue_switch);
             Utils.writeValue(nodePowerEfficientWorkqueue, enabled ? "1" : "0");
             return true;
         // MSM touchboost switch
@@ -901,7 +901,7 @@ public class OPlusExtras extends PreferenceFragment
 
     // Power efficient workqueue switch
     public static void restorePowerEfficientWorkqueueSetting(Context context) {
-        String nodePowerEfficientWorkqueue = context.getResources().getString(R.string.node_touchboost_switch);
+        String nodePowerEfficientWorkqueue = context.getResources().getString(R.string.node_power_efficient_workqueue_switch);
         if (Utils.fileWritable(nodePowerEfficientWorkqueue)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_POWER_EFFICIENT_WORKQUEUE,
