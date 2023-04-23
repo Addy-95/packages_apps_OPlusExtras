@@ -168,8 +168,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodePowerEfficientWorkqueue = getResources().getString(R.string.node_power_efficient_workqueue_switch);
         if (Utils.fileWritable(nodePowerEfficientWorkqueue)) {
             mPowerEfficientWorkqueueModeSwitch.setEnabled(true);
-            mPowerEfficientWorkqueueModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_POWER_EFFICIENT_WORKQUEUE,
-                Utils.getFileValueAsBoolean(nodePowerEfficientWorkqueue, false)));
+            mPowerEfficientWorkqueueModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_POWER_EFFICIENT_WORKQUEUE, false));
             mPowerEfficientWorkqueueModeSwitch.setOnPreferenceChangeListener(this);
         } else {
             mPowerEfficientWorkqueueModeSwitch.setEnabled(false);
@@ -184,8 +183,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeTouchboost = getResources().getString(R.string.node_touchboost_switch);
         if (Utils.fileWritable(nodeTouchboost)) {
             mTouchboostModeSwitch.setEnabled(true);
-            mTouchboostModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_TOUCHBOOST,
-                Utils.getFileValueAsBoolean(nodeTouchboost, false)));
+            mTouchboostModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_TOUCHBOOST, false));
             mTouchboostModeSwitch.setOnPreferenceChangeListener(this);
         } else {
             mTouchboostModeSwitch.setEnabled(false);
@@ -205,8 +203,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeAntiFlicker = getResources().getString(R.string.node_antiflicker_switch);
         if (Utils.fileWritable(nodeAntiFlicker)) {
             mAntiFlickerModeSwitch.setEnabled(true);
-            mAntiFlickerModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_ANTIFLICKER,
-                Utils.getFileValueAsBoolean(nodeAntiFlicker, false)));
+            mAntiFlickerModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_ANTIFLICKER, false));
             mAntiFlickerModeSwitch.setOnPreferenceChangeListener(this);
         } else {
             mAntiFlickerModeSwitch.setEnabled(false);
@@ -222,8 +219,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeHBM = getResources().getString(R.string.node_hbm_switch);
         if (Utils.fileWritable(nodeHBM)) {
             mHBMModeSwitch.setEnabled(true);
-            mHBMModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_HBM,
-                Utils.getFileValueAsBoolean(nodeHBM, false)));
+            mHBMModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_HBM, false));
             mHBMModeSwitch.setOnPreferenceChangeListener(this);
         } else {
             mHBMModeSwitch.setEnabled(false);
@@ -244,8 +240,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeKeepPCC = getResources().getString(R.string.node_keep_pcc_switch);
         if (Utils.fileWritable(nodeKeepPCC)) {
             mKeepPCCModeSwitch.setEnabled(true);
-            mKeepPCCModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_KEEP_PCC,
-                Utils.getFileValueAsBoolean(nodeKeepPCC, false)));
+            mKeepPCCModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_KEEP_PCC, false));
             mKeepPCCModeSwitch.setOnPreferenceChangeListener(this);
         } else {
             mKeepPCCModeSwitch.setEnabled(false);
@@ -285,8 +280,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeFSync = getResources().getString(R.string.node_fsync_switch);
         if (Utils.fileWritable(nodeFSync)) {
             mFSyncSwitch.setEnabled(true);
-            mFSyncSwitch.setChecked(sharedPrefs.getBoolean(KEY_FSYNC,
-                Utils.getFileValueAsBoolean(nodeFSync, false)));
+            mFSyncSwitch.setChecked(sharedPrefs.getBoolean(KEY_FSYNC, false));
             mFSyncSwitch.setOnPreferenceChangeListener(this);
         } else {
             mFSyncSwitch.setEnabled(false);
@@ -347,8 +341,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodePowershare = getResources().getString(R.string.node_powershare_switch);
         if (Utils.fileWritable(nodePowershare)) {
             mPowershareModeSwitch.setEnabled(true);
-            mPowershareModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_POWERSHARE,
-                Utils.getFileValueAsBoolean(nodePowershare, false)));
+            mPowershareModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_POWERSHARE, false));
             mPowershareModeSwitch.setOnPreferenceChangeListener(this);
         } else {
             mPowershareModeSwitch.setEnabled(false);
@@ -363,8 +356,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeQuietMode = getResources().getString(R.string.node_quiet_mode_switch);
         if (Utils.fileWritable(nodeQuietMode)) {
             mQuietModeSwitch.setEnabled(true);
-            mQuietModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_QUIET_MODE,
-                Utils.getFileValueAsBoolean(nodeQuietMode, false)));
+            mQuietModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_QUIET_MODE, false));
             mQuietModeSwitch.setOnPreferenceChangeListener(this);
         } else {
             mQuietModeSwitch.setEnabled(false);
@@ -379,8 +371,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeHighTouchPollingRate = getResources().getString(R.string.node_high_touch_polling_rate_switch);
         if (Utils.fileWritable(nodeHighTouchPollingRate)) {
             mHighTouchPollingRateSwitch.setEnabled(true);
-            mHighTouchPollingRateSwitch.setChecked(sharedPrefs.getBoolean(KEY_HIGH_TOUCH_POLLING_RATE,
-                Utils.getFileValueAsBoolean(nodeHighTouchPollingRate, false)));
+            mHighTouchPollingRateSwitch.setChecked(sharedPrefs.getBoolean(KEY_HIGH_TOUCH_POLLING_RATE, false));
             mHighTouchPollingRateSwitch.setOnPreferenceChangeListener(this);
         } else {
             mHighTouchPollingRateSwitch.setEnabled(false);
@@ -401,8 +392,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeUSB2FastCharge = getResources().getString(R.string.node_usb2_fast_charge_switch);
         if (Utils.fileWritable(nodeUSB2FastCharge)) {
             mUSB2FastChargeSwitch.setEnabled(true);
-            mUSB2FastChargeSwitch.setChecked(sharedPrefs.getBoolean(KEY_USB2_FAST_CHARGE,
-                Utils.getFileValueAsBoolean(nodeUSB2FastCharge, false)));
+            mUSB2FastChargeSwitch.setChecked(sharedPrefs.getBoolean(KEY_USB2_FAST_CHARGE, false));
             mUSB2FastChargeSwitch.setOnPreferenceChangeListener(this);
         } else {
             mUSB2FastChargeSwitch.setEnabled(false);
@@ -418,8 +408,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeOTG = getResources().getString(R.string.node_usb_otg_switch);
         if (Utils.fileWritable(nodeOTG)) {
             mUSBOTGSwitch.setEnabled(true);
-            mUSBOTGSwitch.setChecked(sharedPrefs.getBoolean(KEY_USB_OTG,
-                Utils.getFileValueAsBoolean(nodeOTG, false)));
+            mUSBOTGSwitch.setChecked(sharedPrefs.getBoolean(KEY_USB_OTG, false));
             mUSBOTGSwitch.setOnPreferenceChangeListener(this);
         } else {
             mUSBOTGSwitch.setEnabled(false);
@@ -904,8 +893,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodePowerEfficientWorkqueue = context.getResources().getString(R.string.node_power_efficient_workqueue_switch);
         if (Utils.fileWritable(nodePowerEfficientWorkqueue)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_POWER_EFFICIENT_WORKQUEUE,
-                Utils.getFileValueAsBoolean(nodePowerEfficientWorkqueue, false));
+            boolean value = sharedPrefs.getBoolean(KEY_POWER_EFFICIENT_WORKQUEUE, false);
             Utils.writeValue(nodePowerEfficientWorkqueue, value ? "1" : "0");
         }
     }
@@ -915,8 +903,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeTouchboost = context.getResources().getString(R.string.node_touchboost_switch);
         if (Utils.fileWritable(nodeTouchboost)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_TOUCHBOOST,
-                Utils.getFileValueAsBoolean(nodeTouchboost, false));
+            boolean value = sharedPrefs.getBoolean(KEY_TOUCHBOOST, false);
             Utils.writeValue(nodeTouchboost, value ? "1" : "0");
         }
     }
@@ -926,8 +913,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeAntiFlicker = context.getResources().getString(R.string.node_antiflicker_switch);
         if (Utils.fileWritable(nodeAntiFlicker)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_ANTIFLICKER,
-                Utils.getFileValueAsBoolean(nodeAntiFlicker, false));
+            boolean value = sharedPrefs.getBoolean(KEY_ANTIFLICKER, false);
             Utils.writeValue(nodeAntiFlicker, value ? "1" : "0");
         }
     }
@@ -937,8 +923,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeHBM = context.getResources().getString(R.string.node_hbm_switch);
         if (Utils.fileWritable(nodeHBM)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_HBM,
-                Utils.getFileValueAsBoolean(nodeHBM, false));
+            boolean value = sharedPrefs.getBoolean(KEY_HBM, false);
             Utils.writeValue(nodeHBM, value ? "1" : "0");
         }
     }
@@ -948,8 +933,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeKeepPCC = context.getResources().getString(R.string.node_keep_pcc_switch);
         if (Utils.fileWritable(nodeKeepPCC)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_KEEP_PCC,
-                Utils.getFileValueAsBoolean(nodeKeepPCC, false));
+            boolean value = sharedPrefs.getBoolean(KEY_KEEP_PCC, false);
             Utils.writeValue(nodeKeepPCC, value ? "1" : "0");
         }
     }
@@ -970,8 +954,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeFSync = context.getResources().getString(R.string.node_fsync_switch);
         if (Utils.fileWritable(nodeFSync)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_FSYNC,
-                Utils.getFileValueAsBoolean(nodeFSync, false));
+            boolean value = sharedPrefs.getBoolean(KEY_FSYNC, false);
             Utils.writeValue(nodeFSync, value ? "1" : "0");
         }
     }
@@ -992,8 +975,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodePowershare = context.getResources().getString(R.string.node_powershare_switch);
         if (Utils.fileWritable(nodePowershare)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_POWERSHARE,
-                Utils.getFileValueAsBoolean(nodePowershare, false));
+            boolean value = sharedPrefs.getBoolean(KEY_POWERSHARE, false);
             Utils.writeValue(nodePowershare, value ? "1" : "0");
         }
     }
@@ -1003,8 +985,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeQuietMode = context.getResources().getString(R.string.node_quiet_mode_switch);
         if (Utils.fileWritable(nodeQuietMode)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_QUIET_MODE,
-                Utils.getFileValueAsBoolean(nodeQuietMode, false));
+            boolean value = sharedPrefs.getBoolean(KEY_QUIET_MODE, false);
             Utils.writeValue(nodeQuietMode, value ? "1" : "0");
         }
     }
@@ -1031,13 +1012,12 @@ public class OPlusExtras extends PreferenceFragment
         }
     }
 
-    // Hight touch polling rate switch
+    // High touch polling rate switch
     public static void restoreHighTouchPollingRateSetting(Context context) {
         String nodeHighTouchPollingRate = context.getResources().getString(R.string.node_high_touch_polling_rate_switch);
         if (Utils.fileWritable(nodeHighTouchPollingRate)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_HIGH_TOUCH_POLLING_RATE,
-                Utils.getFileValueAsBoolean(nodeHighTouchPollingRate, false));
+            boolean value = sharedPrefs.getBoolean(KEY_HIGH_TOUCH_POLLING_RATE, false);
             Utils.writeValue(nodeHighTouchPollingRate, value ? "1" : "0");
         }
     }
@@ -1047,8 +1027,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeUSB2FastCharge = context.getResources().getString(R.string.node_usb2_fast_charge_switch);
         if (Utils.fileWritable(nodeUSB2FastCharge)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_USB2_FAST_CHARGE,
-                Utils.getFileValueAsBoolean(nodeUSB2FastCharge, false));
+            boolean value = sharedPrefs.getBoolean(KEY_USB2_FAST_CHARGE, false);
             Utils.writeValue(nodeUSB2FastCharge, value ? "1" : "0");
         }
     }
@@ -1058,8 +1037,7 @@ public class OPlusExtras extends PreferenceFragment
         String nodeOTG = context.getResources().getString(R.string.node_usb_otg_switch);
         if (Utils.fileWritable(nodeOTG)) {
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-            boolean value = sharedPrefs.getBoolean(KEY_USB_OTG,
-                Utils.getFileValueAsBoolean(nodeOTG, false));
+            boolean value = sharedPrefs.getBoolean(KEY_USB_OTG, false);
             Utils.writeValue(nodeOTG, value ? "1" : "0");
         }
     }
