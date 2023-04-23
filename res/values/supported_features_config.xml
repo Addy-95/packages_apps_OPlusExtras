@@ -56,6 +56,9 @@
     <!-- Whether device supports Speaker Gain -->
     <bool name="config_deviceSupportsSpeakerGain">false</bool>
 
+    <!-- Whether device supports Disabling Edge Limit -->
+    <bool name="config_deviceSupportsDisablingEdgeLimit">false</bool>
+
     <!-- Whether device supports High Touch Polling Rate -->
     <bool name="config_deviceSupportsHightTouchPollingRate">false</bool>   
 

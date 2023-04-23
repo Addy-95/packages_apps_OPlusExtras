@@ -26,6 +26,7 @@ OPlusExtras is a device specifc parts application, aimed at addressing the chall
 | **Power** | `Powershare` | Reverse wireless charging. |N/A |
 |  | `Quite mode` | Disable the fan of the OEM wireless charger and limit wireless charging speeds. | N/A |
 | **Touchscreen** | `Touch gestures` | Screen-Off touch gestures with various actions (utilizes the lineage touch hidl). |N/A |
+|  | `Edge limit` | Disable the touchpanels edge limit. |N/A |
 |  | `High touch polling rate` | Increase touchscreen polling rate. |N/A |
 | **Ui-Bench** | `Jitter` | Calculate rendering jitter. | N/A|
 | **USB** | `USB-OTG` | Force enable USB on-the-go mode. |N/A |

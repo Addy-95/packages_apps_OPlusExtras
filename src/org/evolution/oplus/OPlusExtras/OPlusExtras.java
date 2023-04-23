@@ -109,6 +109,9 @@ public class OPlusExtras extends PreferenceFragment
     private CustomSeekBarPreference mSpeakerGainPreference;
 
     // Touchscreen
+    private static final String KEY_EDGE_LIMIT = "edge_limit";
+    private SwitchPreference mEdgeLimitSwitch;
+
     private static final String KEY_HIGH_TOUCH_POLLING_RATE = "high_touch_polling_rate";
     private static final String KEY_HIGH_TOUCH_POLLING_RATE_INFO = "high_touch_polling_rate_info";
     private SwitchPreference mHighTouchPollingRateSwitch;
@@ -366,6 +369,21 @@ public class OPlusExtras extends PreferenceFragment
             findPreference(KEY_QUIET_MODE).setVisible(false);
         }
 
+        // Edge limit switch
+        mEdgeLimitSwitch = (SwitchPreference) findPreference(KEY_EDGE_LIMIT);
+        String EdgeLimit = getResources().getString(R.string.node_edge_limit_switch);
+        if (Utils.fileWritable(nodeEdgeLimit)) {
+            mEdgeLimitSwitch.setEnabled(true);
+            mEdgeLimitSwitch.setChecked(sharedPrefs.getBoolean(KEY_EDGE_LIMIT, false));
+            mEdgeLimitSwitch.setOnPreferenceChangeListener(this);
+        } else {
+            mEdgeLimitSwitch.setEnabled(false);
+        }
+
+        if (!getResources().getBoolean(R.bool.config_deviceSupportsDisablingEdgeLimit)) {
+            findPreference(KEY_EDGE_LIMIT).setVisible(false);
+        }
+
         // High touch polling rate switch
         mHighTouchPollingRateSwitch = (SwitchPreference) findPreference(KEY_HIGH_TOUCH_POLLING_RATE);
         String nodeHighTouchPollingRate = getResources().getString(R.string.node_high_touch_polling_rate_switch);
@@ -565,7 +583,15 @@ public class OPlusExtras extends PreferenceFragment
             String nodeSpeakerGain = getContext().getResources().getString(R.string.node_speaker_gain_preference);
             Utils.writeValue(nodeSpeakerGain, String.valueOf(value));
             return true;
-        // Hight touch polling rate switch
+        // Edge limit switch
+        } else if (preference == mEdgeLimitSwitch) {
+            boolean enabled = (Boolean) newValue;
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+            sharedPrefs.edit().putBoolean(KEY_EDGE_LIMIT, enabled).commit();
+            String nodeEdgeLimit = getContext().getResources().getString(R.string.node_edge_limit_switch);
+            Utils.writeValue(nodeEdgeLimit, enabled ? "1" : "0");
+            return true;
+        // High touch polling rate switch
         } else if (preference == mHighTouchPollingRateSwitch) {
             boolean enabled = (Boolean) newValue;
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -1009,6 +1035,16 @@ public class OPlusExtras extends PreferenceFragment
             int value = sharedPrefs.getInt(KEY_SPEAKER_GAIN,
                 Integer.parseInt(Utils.getFileValue(nodeSpeakerGain, SPEAKER_GAIN_DEFAULT)));
             Utils.writeValue(nodeSpeakerGain, String.valueOf(value));
+        }
+    }
+
+    // Edge limit switch
+    public static void restoreEdgeLimitSetting(Context context) {
+        String nodeEdgeLimit = context.getResources().getString(R.string.node_edge_limit_switch);
+        if (Utils.fileWritable(nodeEdgeLimit)) {
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            boolean value = sharedPrefs.getBoolean(KEY_EDGE_LIMIT, false);
+            Utils.writeValue(nodeEdgeLimit, value ? "1" : "0");
         }
     }
 

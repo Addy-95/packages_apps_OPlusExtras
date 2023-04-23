@@ -221,6 +221,10 @@
     <string name="touchscreen_gesture_action_google_maps">Google Maps</string>
     <string name="touchscreen_gesture_action_google_search">Google Search</string>
 
+    <!-- Edge limit -->
+    <string name="edge_limit_title">Edge limit</string>
+    <string name="edge_limit_summary">Disable the touchpanels edge limit</string>
+
     <!-- High touch polling rate -->
     <string name="high_touch_polling_rate_title">High touch polling rate</string>
     <string name="high_touch_polling_rate_summary">Increase touchscreen polling rate</string>

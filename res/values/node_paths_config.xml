@@ -50,6 +50,9 @@
     <!-- Speaker gain sysfs node path -->
     <string name="node_speaker_gain_preference" translatable="false"></string>
 
+    <!-- Edge limit node path -->
+    <string name="node_edge_limit_switch" translatable="false"></string>
+
     <!-- High touch polling rate procfs node path -->
     <string name="node_high_touch_polling_rate_switch" translatable="false"></string>
 

@@ -230,6 +230,11 @@
             android:summary="@string/high_touch_polling_rate_info"
             android:persistent="false" />
 
+        <SwitchPreference
+            android:key="edge_limit"
+            android:title="@string/edge_limit_title"
+            android:summary="@string/edge_limit_summary" />
+
         <Preference
             android:key="touchscreen_gestures"
             android:title="@string/touchscreen_gesture_settings_title"

@@ -39,6 +39,7 @@ public class Startup extends BroadcastReceiver {
             OPlusExtras.restoreQuietModeSetting(context);
             OPlusExtras.restoreMicGainSetting(context);
             OPlusExtras.restoreSpeakerGainSetting(context);
+            OPlusExtras.restoreEdgeLimitSetting(context);
             OPlusExtras.restoreHighTouchPollingRateSetting(context);
             OPlusExtras.restoreFastChargeSetting(context);
             OPlusExtras.restoreOTGSetting(context);
